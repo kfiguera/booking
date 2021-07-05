@@ -17,7 +17,7 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Dashboard") }}</p>
                 </a>
             </li>
-           
+
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExamples" @if($activeButton =='laravel') aria-expanded="true" @endif>
                     <i>
@@ -36,10 +36,10 @@ Tip 2: you can also add an image using data-image tag
                                 <p>{{ __("User Profile") }}</p>
                             </a>
                         </li>
-                        <li class="nav-item @if($activePage == 'user-management') active @endif">
-                            <a class="nav-link" href="{{route('user.index')}}">
+                        <li class="nav-item @if($activePage == 'users') active @endif">
+                            <a class="nav-link" href="{{route('users.index')}}">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>{{ __("User Management") }}</p>
+                                <p>{{ __("Users Management") }}</p>
                             </a>
                         </li>
                     </ul>

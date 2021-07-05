@@ -4,18 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the users
-     *
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\View\View
-     */
-    public function index(User $model)
+    protected $options;
+
+    public function __construct()
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        $this->options = [
+            'activePage' => 'users',
+            'title' => 'Usuarios',
+            'navName' => 'Usuarios',
+            'activeButton' => 'laravel'
+        ];
+    }
+
+    public function index()
+    {
+
+        $options = $this->options;
+        $users = User::latest()->paginate(1);
+        return view('users.index', compact('users','options'));
+    }
+    public function create()
+    {
+        $options = $this->options;
+        return view('users.create', compact('options'));
+    }
+
+    public function store(UserRequest $request)
+    {
+        User::create($request->all());
+        return redirect()->route('users.index');
     }
 }
